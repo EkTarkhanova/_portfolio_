@@ -26,9 +26,9 @@ window.addEventListener('scroll', () => {
 const projectsData = {
     soldier: {
         screenshots: [
-            'screen1.jpg',
-            'screen2.jpg', 
-            'screen3.jpg'
+            'screen1.JPG',
+            'screen2.JPG', 
+            'screen3.JPG'
         ],
         title: 'Позывной «Соловей»'
     }
