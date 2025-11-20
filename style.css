@@ -258,6 +258,7 @@ section {
 .project-links {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .project-link {
@@ -293,6 +294,134 @@ section {
 
 .presentation-mockup .mockup-screen {
     background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+}
+
+/* Стили для проекта в процессе */
+.process-novel {
+    position: relative;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 100px;
+}
+
+.process-novel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #ff6b6b);
+    border-radius: 15px 15px 0 0;
+}
+
+.process-badge {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.process-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.writing-progress {
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+}
+
+.progress-text {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.character-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.character-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.character-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.character-avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.character-name {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.project-sample blockquote {
+    position: relative;
+    border-left: 3px solid #667eea;
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text-light);
+    background: rgba(102, 126, 234, 0.05);
+    padding: 1.5rem;
+    border-radius: 0 10px 10px 0;
+}
+
+/* Анимация для процесса */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.process-novel {
+    animation: pulse 3s ease-in-out infinite;
 }
 
 /* Стихи */
@@ -418,5 +547,23 @@ section {
     
     .nav-menu {
         display: none;
+    }
+    
+    .process-novel {
+        padding: 1.5rem;
+    }
+    
+    .character-grid {
+        flex-wrap: wrap;
+    }
+    
+    .project-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .project-link {
+        width: 100%;
+        text-align: center;
     }
 }
