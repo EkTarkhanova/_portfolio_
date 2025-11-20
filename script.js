@@ -23,18 +23,26 @@ window.addEventListener('scroll', () => {
 const projectsData = {
     renpy: {
         screenshots: [
-            'path/to/screenshot1.jpg',
-            'path/to/screenshot2.jpg',
-            'path/to/screenshot3.jpg'
+            'путь/к/скриншоту1.jpg',
+            'путь/к/скриншоту2.jpg',
+            'путь/к/скриншоту3.jpg'
         ],
         title: 'Славянская сага'
     },
     presentation: {
         screenshots: [
-            'path/to/pres1.jpg',
-            'path/to/pres2.jpg'
+            'путь/к/презентации1.jpg',
+            'путь/к/презентации2.jpg'
         ],
         title: 'Город теней'
+    },
+    soldier: {
+        screenshots: [
+            'ПС кадр1.jpg',
+            'ПС кадр2.jpg', 
+            'ПС кадр3.jpg'
+        ],
+        title: 'Позывной «Соловей»'
     }
 };
 
@@ -116,18 +124,20 @@ document.querySelectorAll('.project-card, .poem-card').forEach(card => {
     observer.observe(card);
 });
 
-// Динамическая загрузка контента (можно доработать)
+// Функция для загрузки стихов
 function loadPoems() {
-    // Здесь можно загружать стихи из JSON файла
     const poems = [
         {
-            title: "Название первого стиха",
-            content: `Здесь будет текст вашего первого стихотворения...
-                     Разделяйте строки таким образом...`
+            title: "Мой первый стих",
+            content: `Текст вашего первого стихотворения...
+Разделяйте строки вот так...
+И они будут отображаться красиво`
         },
         {
-            title: "Название второго стиха", 
-            content: `Текст второго стихотворения...`
+            title: "Второе стихотворение", 
+            content: `Текст второго стихотворения...
+Еще одна строка...
+И еще одна...`
         }
     ];
     
@@ -144,9 +154,43 @@ function loadPoems() {
     `).join('');
 }
 
+// Анимация прогресса
+function animateProgress() {
+    const progressFill = document.querySelector('.progress-fill');
+    let width = 0;
+    const targetWidth = 45; // Ваш реальный процент
+    
+    const animation = setInterval(() => {
+        if (width >= targetWidth) {
+            clearInterval(animation);
+        } else {
+            width++;
+            progressFill.style.width = width + '%';
+        }
+    }, 30);
+}
+
+// Интерактивность для персонажей
+function initCharacterInteractions() {
+    const characters = document.querySelectorAll('.character-card');
+    
+    characters.forEach(character => {
+        character.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        
+        character.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+}
+
 // Инициализация
 document.addEventListener('DOMContentLoaded', () => {
     loadPoems();
+    animateProgress();
+    initCharacterInteractions();
     
     // Прелоадер (опционально)
     window.addEventListener('load', () => {
