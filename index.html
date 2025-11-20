@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио | Нарративный дизайнер</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">Storyteller</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#about" class="nav-link">Обо мне</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Проекты</a></li>
+                <li class="nav-item"><a href="#poetry" class="nav-link">Стихи</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Главный экран -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Истории, которые живут</h1>
+            <p class="hero-subtitle">Нарративный дизайн & Сценаристика</p>
+            <a href="#projects" class="cta-button">Увидеть проекты</a>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Обо мне -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Обо мне</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Я создаю миры и характеры, которые дышат. От славянских мифов до космических саг — каждая история находит во мне своего рассказчика.</p>
+                    <p>Верю, что хороший нарратив — это когда читатель становится соавтором, а игрок — частью истории.</p>
+                    <div class="skills">
+                        <span class="skill-tag">Ren'Py</span>
+                        <span class="skill-tag">Нарративный дизайн</span>
+                        <span class="skill-tag">Создание миров</span>
+                        <span class="skill-tag">Диалоги</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Проекты -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Мои проекты</h2>
+            
+            <!-- Новелла в Ren'Py -->
+            <div class="project-card">
+                <div class="project-content">
+                    <h3 class="project-title">Славянская сага</h3>
+                    <p class="project-subtitle">Визуальная новелла на Ren'Py</p>
+                    <p class="project-description">Погружение в мир древних славянских мифов, где каждый выбор определяет судьбу героя. Полностью оригинальный сценарий с ветвлением и несколькими концовками.</p>
+                    <div class="project-features">
+                        <div class="feature">
+                            <h4>Что сделано:</h4>
+                            <ul>
+                                <li>Написание сценария (15+ тысяч слов)</li>
+                                <li>Проработка системы выборов</li>
+                                <li>Создание персонажей и их арок</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link" data-project="renpy">Скриншоты</a>
+                    </div>
+                </div>
+                <div class="project-visual">
+                    <div class="mockup">
+                        <div class="mockup-screen" id="renpy-preview">
+                            <!-- Скриншоты будут подгружаться через JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Сторителлинг в презентациях -->
+            <div class="project-card reverse">
+                <div class="project-content">
+                    <h3 class="project-title">Город теней</h3>
+                    <p class="project-subtitle">Интерактивный сторителлинг</p>
+                    <p class="project-description">Экспериментальный формат повествования через презентацию, где визуальный ряд становится частью истории.</p>
+                    <div class="project-sample">
+                        <h4>Отрывок из главы:</h4>
+                        <blockquote>
+                            "Дождь стучал по крышам старого города, смывая границы между реальностью и забытыми снами. Каждая лужа отражала не то небо, что над головой, а то, что могло бы быть..."
+                        </blockquote>
+                    </div>
+                    <div class="project-links">
+                        <a href="URL_ВАШЕЙ_ПРЕЗЕНТАЦИИ" class="project-link" target="_blank">Смотреть презентацию</a>
+                    </div>
+                </div>
+                <div class="project-visual">
+                    <div class="mockup presentation-mockup">
+                        <div class="mockup-screen" id="presentation-preview">
+                            <!-- Preview презентации -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Стихи -->
+    <section id="poetry" class="poetry">
+        <div class="container">
+            <h2 class="section-title">Стихи</h2>
+            <div class="poetry-grid">
+                <div class="poem-card">
+                    <div class="poem-content">
+                        <h3 class="poem-title">Название первого стиха</h3>
+                        <div class="poem-text">
+                            <p>Здесь будет текст вашего первого стихотворения...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="poem-card">
+                    <div class="poem-content">
+                        <h3 class="poem-title">Название второго стиха</h3>
+                        <div class="poem-text">
+                            <p>Здесь будет текст вашего второго стихотворения...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно для скриншотов -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-gallery">
+                <img src="" alt="" class="modal-image">
+                <button class="gallery-nav prev">‹</button>
+                <button class="gallery-nav next">›</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
