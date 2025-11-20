@@ -31,6 +31,15 @@ const projectsData = {
             'screen_4.jpg'
         ],
         title: 'Позывной «Соловей»'
+    },
+    confession: {
+        screenshots: [
+            'confession1.jpg',
+            'confession2.jpg',
+            'confession3.jpg',
+            'confession4.jpg'
+        ],
+        title: 'Исповедь падшей'
     }
 };
 
@@ -44,18 +53,24 @@ const nextBtn = document.querySelector('.gallery-nav.next');
 let currentGallery = [];
 let currentIndex = 0;
 
-// Обработка кликов по мини-галерее
+// Обработка кликов по мини-галерее для всех проектов
 function initMiniGallery() {
     const galleryItems = document.querySelectorAll('.gallery-item');
     
     galleryItems.forEach(item => {
         item.addEventListener('click', function() {
             const index = parseInt(this.dataset.index);
-            currentGallery = projectsData.soldier.screenshots;
-            currentIndex = index;
-            showImage(currentIndex);
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
+            const project = this.dataset.project;
+            
+            if (projectsData[project] && projectsData[project].screenshots) {
+                currentGallery = projectsData[project].screenshots;
+                currentIndex = index;
+                showImage(currentIndex);
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                console.error('Проект не найден:', project);
+            }
         });
     });
 }
