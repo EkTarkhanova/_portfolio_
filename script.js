@@ -16,26 +16,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
-    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
 });
 
 // Данные для проектов
 const projectsData = {
-    renpy: {
-        screenshots: [
-            'путь/к/скриншоту1.jpg',
-            'путь/к/скриншоту2.jpg',
-            'путь/к/скриншоту3.jpg'
-        ],
-        title: 'Славянская сага'
-    },
-    presentation: {
-        screenshots: [
-            'путь/к/презентации1.jpg',
-            'путь/к/презентации2.jpg'
-        ],
-        title: 'Город теней'
-    },
     soldier: {
         screenshots: [
             'ПС кадр1.jpg',
@@ -62,11 +49,13 @@ document.querySelectorAll('.project-link').forEach(link => {
         if (link.dataset.project) {
             e.preventDefault();
             const project = link.dataset.project;
-            currentGallery = projectsData[project].screenshots;
-            currentIndex = 0;
-            showImage(currentIndex);
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
+            if (projectsData[project]) {
+                currentGallery = projectsData[project].screenshots;
+                currentIndex = 0;
+                showImage(currentIndex);
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
         }
     });
 });
@@ -124,50 +113,22 @@ document.querySelectorAll('.project-card, .poem-card').forEach(card => {
     observer.observe(card);
 });
 
-// Функция для загрузки стихов
-function loadPoems() {
-    const poems = [
-        {
-            title: "Мой первый стих",
-            content: `Текст вашего первого стихотворения...
-Разделяйте строки вот так...
-И они будут отображаться красиво`
-        },
-        {
-            title: "Второе стихотворение", 
-            content: `Текст второго стихотворения...
-Еще одна строка...
-И еще одна...`
-        }
-    ];
-    
-    const poetryGrid = document.querySelector('.poetry-grid');
-    poetryGrid.innerHTML = poems.map(poem => `
-        <div class="poem-card">
-            <div class="poem-content">
-                <h3 class="poem-title">${poem.title}</h3>
-                <div class="poem-text">
-                    ${poem.content.split('\n').map(line => `<p>${line}</p>`).join('')}
-                </div>
-            </div>
-        </div>
-    `).join('');
-}
-
 // Анимация прогресса
 function animateProgress() {
     const progressFill = document.querySelector('.progress-fill');
-    let width = 0;
-    const targetWidth = 45; // Ваш реальный процент
-    
-    const animation = setInterval(() => {
-        if (width >= targetWidth) {
-            clearInterval(animation);
-        } else {
-            width++;
-            progressFill.style.width = width + '%';
-        }
-    }, 30);
+    if (progressFill) {
+        let width = 0;
+        const targetWidth = 45; // Ваш реальный процент
+        
+        const animation = setInterval(() => {
+            if (width >= targetWidth) {
+                clearInterval(animation);
+            } else {
+                width++;
+                progressFill.style.width = width + '%';
+            }
+        }, 30);
+    }
 }
 
 // Интерактивность для персонажей
@@ -186,6 +147,36 @@ function initCharacterInteractions() {
     });
 }
 
+// Загрузка стихов
+function loadPoems() {
+    // Здесь можно загружать стихи из JSON файла или оставить как есть
+    const poems = [
+        {
+            title: "Первый стих",
+            content: `Здесь будет текст вашего первого стихотворения...
+                     Разделяйте строки таким образом...`
+        },
+        {
+            title: "Второй стих", 
+            content: `Текст второго стихотворения...`
+        }
+    ];
+    
+    const poetryGrid = document.querySelector('.poetry-grid');
+    if (poetryGrid) {
+        poetryGrid.innerHTML = poems.map(poem => `
+            <div class="poem-card">
+                <div class="poem-content">
+                    <h3 class="poem-title">${poem.title}</h3>
+                    <div class="poem-text">
+                        ${poem.content.split('\n').map(line => `<p>${line}</p>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+}
+
 // Инициализация
 document.addEventListener('DOMContentLoaded', () => {
     loadPoems();
@@ -196,4 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', () => {
         document.body.classList.add('loaded');
     });
+});
+
+// Закрытие модального окна по ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
 });
