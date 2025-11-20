@@ -1,3 +1,4 @@
+
 // Плавная прокрутка
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -25,9 +26,9 @@ window.addEventListener('scroll', () => {
 const projectsData = {
     soldier: {
         screenshots: [
-            'ПС кадр1.jpg',
-            'ПС кадр2.jpg', 
-            'ПС кадр3.jpg'
+            'screen1.jpg',
+            'screen2.jpg', 
+            'screen3.jpg'
         ],
         title: 'Позывной «Соловей»'
     }
