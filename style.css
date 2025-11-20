@@ -195,14 +195,6 @@ section {
     margin-bottom: 100px;
 }
 
-.project-card.reverse {
-    direction: rtl;
-}
-
-.project-card.reverse > * {
-    direction: ltr;
-}
-
 .project-title {
     font-size: 2rem;
     margin-bottom: 0.5rem;
@@ -247,6 +239,15 @@ section {
     color: var(--accent);
 }
 
+.project-sample {
+    margin-bottom: 2rem;
+}
+
+.project-sample h4 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
 .project-sample blockquote {
     border-left: 3px solid var(--accent);
     padding-left: 1rem;
@@ -274,26 +275,6 @@ section {
 .project-link:hover {
     background: var(--accent);
     color: white;
-}
-
-/* Мокапы */
-.mockup {
-    position: relative;
-    perspective: 1000px;
-}
-
-.mockup-screen {
-    width: 300px;
-    height: 200px;
-    background: #f0f0f0;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    position: relative;
-}
-
-.presentation-mockup .mockup-screen {
-    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
 }
 
 /* Стили для проекта в процессе */
@@ -373,7 +354,6 @@ section {
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    cursor: pointer;
 }
 
 .character-avatar {
@@ -401,27 +381,24 @@ section {
     color: var(--text-light);
 }
 
-.project-sample blockquote {
+/* Мокапы */
+.mockup {
     position: relative;
-    border-left: 3px solid #667eea;
-    padding-left: 1.5rem;
-    margin: 1.5rem 0;
-    font-style: italic;
-    color: var(--text-light);
-    background: rgba(102, 126, 234, 0.05);
-    padding: 1.5rem;
-    border-radius: 0 10px 10px 0;
+    perspective: 1000px;
 }
 
-/* Анимация для процесса */
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.7; }
-    100% { opacity: 1; }
+.mockup-screen {
+    width: 300px;
+    height: 200px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    position: relative;
 }
 
-.process-novel {
-    animation: pulse 3s ease-in-out infinite;
+.presentation-mockup .mockup-screen {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
 }
 
 /* Стихи */
@@ -534,6 +511,16 @@ section {
     }
 }
 
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.process-novel {
+    animation: pulse 3s ease-in-out infinite;
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
     .project-card {
@@ -559,11 +546,12 @@ section {
     
     .project-links {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
     
     .project-link {
-        width: 100%;
         text-align: center;
+        width: 100%;
+        max-width: 250px;
     }
 }
