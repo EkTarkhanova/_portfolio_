@@ -1,4 +1,3 @@
-
 // Плавная прокрутка
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -26,9 +25,10 @@ window.addEventListener('scroll', () => {
 const projectsData = {
     soldier: {
         screenshots: [
-            'screen1.jpg',
-            'screen2.jpg', 
-            'screen3.jpg'
+            'screen_1.jpg',
+            'screen_2.jpg', 
+            'screen_3.jpg',
+            'screen_4.jpg'
         ],
         title: 'Позывной «Соловей»'
     }
@@ -44,22 +44,21 @@ const nextBtn = document.querySelector('.gallery-nav.next');
 let currentGallery = [];
 let currentIndex = 0;
 
-// Открытие модального окна
-document.querySelectorAll('.project-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        if (link.dataset.project) {
-            e.preventDefault();
-            const project = link.dataset.project;
-            if (projectsData[project]) {
-                currentGallery = projectsData[project].screenshots;
-                currentIndex = 0;
-                showImage(currentIndex);
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-        }
+// Обработка кликов по мини-галерее
+function initMiniGallery() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const index = parseInt(this.dataset.index);
+            currentGallery = projectsData.soldier.screenshots;
+            currentIndex = index;
+            showImage(currentIndex);
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
     });
-});
+}
 
 // Закрытие модального окна
 closeBtn.addEventListener('click', () => {
@@ -76,19 +75,24 @@ modal.addEventListener('click', (e) => {
 
 // Навигация по галерее
 function showImage(index) {
-    if (currentGallery.length > 0) {
+    if (currentGallery.length > 0 && index < currentGallery.length) {
         modalImage.src = currentGallery[index];
+        modalImage.alt = `Скриншот ${index + 1} из ${currentGallery.length}`;
     }
 }
 
 prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
-    showImage(currentIndex);
+    if (currentGallery.length > 0) {
+        currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+        showImage(currentIndex);
+    }
 });
 
 nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % currentGallery.length;
-    showImage(currentIndex);
+    if (currentGallery.length > 0) {
+        currentIndex = (currentIndex + 1) % currentGallery.length;
+        showImage(currentIndex);
+    }
 });
 
 // Анимация появления элементов при скролле
@@ -119,7 +123,7 @@ function animateProgress() {
     const progressFill = document.querySelector('.progress-fill');
     if (progressFill) {
         let width = 0;
-        const targetWidth = 45; // Ваш реальный процент
+        const targetWidth = 45;
         
         const animation = setInterval(() => {
             if (width >= targetWidth) {
@@ -139,7 +143,6 @@ function initCharacterInteractions() {
     characters.forEach(character => {
         character.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-5px)';
-            this.style.transition = 'transform 0.3s ease';
         });
         
         character.addEventListener('mouseleave', function() {
@@ -150,12 +153,10 @@ function initCharacterInteractions() {
 
 // Загрузка стихов
 function loadPoems() {
-    // Здесь можно загружать стихи из JSON файла или оставить как есть
     const poems = [
         {
             title: "Первый стих",
-            content: `Здесь будет текст вашего первого стихотворения...
-                     Разделяйте строки таким образом...`
+            content: `Здесь будет текст вашего первого стихотворения...`
         },
         {
             title: "Второй стих", 
@@ -170,7 +171,7 @@ function loadPoems() {
                 <div class="poem-content">
                     <h3 class="poem-title">${poem.title}</h3>
                     <div class="poem-text">
-                        ${poem.content.split('\n').map(line => `<p>${line}</p>`).join('')}
+                        <p>${poem.content}</p>
                     </div>
                 </div>
             </div>
@@ -183,11 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPoems();
     animateProgress();
     initCharacterInteractions();
-    
-    // Прелоадер (опционально)
-    window.addEventListener('load', () => {
-        document.body.classList.add('loaded');
-    });
+    initMiniGallery();
 });
 
 // Закрытие модального окна по ESC
